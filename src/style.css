@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom CSS Variables */
+:root {
+  --primary-color: #10b981;
+  --secondary-color: #059669;
+  --accent-color: #34d399;
+}
+
 /* Custom styles */
 html {
   scroll-behavior: smooth;
@@ -85,11 +92,11 @@ html {
 /* Scroll Animation Classes */
 .scroll-animate {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
-.scroll-animate.animate-in {
+.scroll-animate.animate {
   opacity: 1;
   transform: translateY(0);
 }
@@ -151,12 +158,19 @@ html {
 
 .text-reveal .reveal-text {
   display: inline-block;
-  transform: translateY(100%);
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(20px);
+  animation: revealText 0.8s ease-out forwards;
 }
 
-.scroll-animate.animate-in .text-reveal .reveal-text {
-  transform: translateY(0);
+.reveal-text:nth-child(1) { animation-delay: 0.2s; }
+.reveal-text:nth-child(2) { animation-delay: 0.4s; }
+.reveal-text:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes revealText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Custom hover effects */
@@ -266,12 +280,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: var(--primary-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: var(--secondary-color);
 }
 
 /* Loading states */
@@ -676,11 +690,12 @@ footer .max-w-6xl {
 /* Animated green gradient background with blur and random movement */
 .animated-green-bg {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  z-index: -1;
   overflow: hidden;
 }
 
@@ -688,41 +703,34 @@ footer .max-w-6xl {
 .animated-green-bg::after {
   content: '';
   position: absolute;
-  width: 120vw;
-  height: 120vh;
-  left: -10vw;
-  top: -10vh;
-  opacity: 0.7;
-  filter: blur(60px);
-  z-index: 1;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 20s infinite ease-in-out;
 }
 
 .animated-green-bg::before {
-  background: radial-gradient(circle at 20% 30%, #bbf7d0 0%, #4ade80 60%, transparent 100%),
-              radial-gradient(circle at 80% 70%, #22c55e 0%, #bbf7d0 60%, transparent 100%);
-  animation: moveGreen1 18s ease-in-out infinite alternate;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
 }
 
 .animated-green-bg::after {
-  background: radial-gradient(circle at 70% 20%, #86efac 0%, #16a34a 60%, transparent 100%),
-              radial-gradient(circle at 30% 80%, #a7f3d0 0%, #22d3ee 60%, transparent 100%);
-  opacity: 0.5;
-  animation: moveGreen2 22s ease-in-out infinite alternate;
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 10s;
 }
 
-@keyframes moveGreen1 {
-  0% { transform: translate(0, 0) scale(1); }
-  30% { transform: translate(-40px, 30px) scale(1.05); }
-  60% { transform: translate(60px, -40px) scale(1.1); }
-  100% { transform: translate(-20px, 40px) scale(1.03); }
-}
-
-@keyframes moveGreen2 {
-  0% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(60px, -30px) scale(1.08); }
-  50% { transform: translate(-50px, 50px) scale(1.12); }
-  75% { transform: translate(30px, 20px) scale(1.05); }
-  100% { transform: translate(-30px, -40px) scale(1.1); }
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-100px) rotate(180deg);
+    opacity: 0.6;
+  }
 }
 
 body > *:not(.animated-green-bg) {
@@ -732,21 +740,17 @@ body > *:not(.animated-green-bg) {
 
 /* Glassmorphism effect for sections */
 .glass-section {
-  background: rgba(255,255,255,0.55);
-  border-radius: 1rem;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
   margin-bottom: 2rem;
-  padding: 1.5rem;
 }
 
 @media (max-width: 768px) {
   .glass-section {
+    margin: 1rem 0;
     padding: 1rem;
-    border-radius: 0.75rem;
-    margin-bottom: 1.5rem;
   }
 }
 

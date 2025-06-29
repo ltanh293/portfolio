@@ -1,5 +1,18 @@
 import './style.css'
 
+// Import images for Vite to handle during build
+import avatarImg from '../images/avata/avatar.jpg'
+import nestleLogo from '../images/nestle/nestle-logo.svg'
+import nestleBg from '../images/nestle/milo_a2.png'
+import vinamilkLogo from '../images/vinamilk/vinamilk-logo.svg'
+import vinamilkBg from '../images/vinamilk/maxresdefault.jpg'
+import fonterraLogo from '../images/fonterra/fonterra-logo.svg'
+import fonterraBg from '../images/fonterra/anlene2.jpeg'
+import fonterraBg2 from '../images/fonterra/anlene.jpeg'
+import masanLogo from '../images/masan/Masan_consumer.svg'
+import masanBg1 from '../images/masan/joins.webp'
+import masanBg2 from '../images/masan/chinsu-1.jpeg'
+
 // HTML content has been moved to index.html for better organization
 // This file now only handles CSS imports and any future JavaScript functionality 
 
@@ -8,8 +21,8 @@ const workData = [
   {
     id: 'nestle-1',
     company: 'NESTLÉ VIETNAM LTD',
-    logo: './images/nestle/nestle-logo.svg',
-    background: './images/nestle/milo_a2.png',
+    logo: nestleLogo,
+    background: nestleBg,
     tags: ['#FMCG', '#InnovationPipeline', '#CapabilityBuilding'],
     position: 'Innovation & Renovation (I&R) Lead',
     department: 'Innovation & Renovation',
@@ -34,8 +47,8 @@ const workData = [
   {
     id: 'vinamilk',
     company: 'VIETNAM DAIRY PRODUCTS JOINT STOCK COMPANY',
-    logo: './images/vinamilk/vinamilk-logo.svg',
-    background: './images/vinamilk/maxresdefault.jpg',
+    logo: vinamilkLogo,
+    background: vinamilkBg,
     tags: ['#FMCG', '#Dairy', '#DrinkingYogurt', '#JuicyMilk', '#Kids'],
     position: 'Brand Manager - SuSu Hero',
     department: 'Marketing',
@@ -60,8 +73,8 @@ const workData = [
   {
     id: 'fonterra',
     company: 'FONTERRA BRANDS (VIETNAM)',
-    logo: './images/fonterra/fonterra-logo.svg',
-    background: './images/fonterra/anlene2.jpeg',
+    logo: fonterraLogo,
+    background: fonterraBg,
     tags: ['#FMCG', '#Dairy', '#AdultMilkPowder', '#Innovation'],
     position: 'Brand Manager',
     department: 'Anlene (core Consumer Business)',
@@ -86,8 +99,8 @@ const workData = [
   {
     id: 'masan-1',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: './images/masan/Masan_consumer.svg',
-    background: './images/masan/joins.webp',
+    logo: masanLogo,
+    background: masanBg1,
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Brand Manager',
     department: 'Joins detergent',
@@ -112,8 +125,8 @@ const workData = [
   {
     id: 'masan-2',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: './images/masan/Masan_consumer.svg',
-    background: './images/masan/chinsu-1.jpeg',
+    logo: masanLogo,
+    background: masanBg2,
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Senior Assistant Brand Manager',
     department: 'Consumer Business',
@@ -138,8 +151,8 @@ const workData = [
   {
     id: 'masan-3',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: './images/masan/Masan_consumer.svg',
-    background: './images/masan/chinsu-1.jpeg',
+    logo: masanLogo,
+    background: masanBg2,
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Masan Young Entrepreneur',
     department: 'Leadership Program',
