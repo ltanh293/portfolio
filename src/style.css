@@ -785,18 +785,111 @@ body > header {
 
 /* Responsive navigation */
 @media (max-width: 768px) {
+  header {
+    padding: 0.75rem 0;
+  }
+  
+  header nav {
+    order: 3;
+    width: 100%;
+  }
+  
   header nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
   }
   
   header nav ul li {
-    margin: 0.25rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  header nav ul li:last-child {
+    border-bottom: none;
+  }
+  
+  header nav ul li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    width: 100%;
   }
   
   header .max-w-7xl {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  
+  /* Mobile menu animation */
+  #mobile-menu {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #mobile-menu.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+  
+  #mobile-menu.flex {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* Mobile CTA button */
+  .md\\:hidden.mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .md\\:hidden.mt-4 a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Desktop navigation */
+@media (min-width: 769px) {
+  header nav ul {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  header nav ul li {
+    border-bottom: none;
+  }
+  
+  header nav ul li a {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Enhanced mobile menu button */
+#mobile-menu-button {
+  transition: all 0.2s ease;
+}
+
+#mobile-menu-button:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+#mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+/* Ensure hero section doesn't get covered */
+@media (max-width: 768px) {
+  .pt-32 {
+    padding-top: 8rem; /* Adjust based on mobile header height */
+  }
+}
+
+@media (min-width: 769px) {
+  .pt-32 {
+    padding-top: 8rem; /* Keep original padding for desktop */
   }
 }
 
@@ -996,27 +1089,23 @@ body > header {
   }
 }
 
-/* Expanded details for work cards with expandable height */
+/* Expanded details for work cards with hover to show */
 .expanded-details {
   max-height: 0;
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
-  transform: translateY(-20px);
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 0;
-  visibility: hidden;
 }
 
 .work-card:hover .expanded-details {
   max-height: 2000px;
   opacity: 1;
-  transform: translateY(0);
   margin-top: 1rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  visibility: visible;
 }
 
 /* Enhanced work card styling */
@@ -1025,12 +1114,13 @@ body > header {
   transform: translateY(0);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .work-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border-color: #e5e7eb;
+  border-color: #3b82f6;
 }
 
 .work-card:hover .work-logo {
@@ -1039,7 +1129,7 @@ body > header {
 }
 
 .work-card:hover .work-company {
-  color: #059669;
+  color: #1e40af;
 }
 
 /* Smooth transition for all work card elements */
@@ -1074,4 +1164,66 @@ body > header {
 .work-card button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-} 
+}
+
+/* Responsive expanded details */
+@media (max-width: 768px) {
+  .expanded-details {
+    margin-top: 0 !important;
+    padding: 1rem !important;
+  }
+  
+  .expanded-details .space-y-4 > div {
+    margin-bottom: 0.75rem;
+  }
+  
+  .expanded-details .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .work-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+@media (min-width: 1024px) {
+  .expanded-details {
+    margin-top: 1.5rem !important;
+    padding: 2rem !important;
+  }
+  
+  .work-card:hover {
+    transform: translateY(-12px) scale(1.03);
+  }
+}
+
+/* Expanded details content animation */
+.expanded-details .space-y-4 > div,
+.expanded-details .space-y-6 > div {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  transition-delay: 0.1s;
+}
+
+.work-card:hover .expanded-details .space-y-4 > div,
+.work-card:hover .expanded-details .space-y-6 > div {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expanded-details .space-y-4 > div:nth-child(1) { transition-delay: 0.1s; }
+.expanded-details .space-y-4 > div:nth-child(2) { transition-delay: 0.2s; }
+.expanded-details .space-y-4 > div:nth-child(3) { transition-delay: 0.3s; }
+.expanded-details .space-y-4 > div:nth-child(4) { transition-delay: 0.4s; }
+.expanded-details .space-y-4 > div:nth-child(5) { transition-delay: 0.5s; }
+.expanded-details .space-y-4 > div:nth-child(6) { transition-delay: 0.6s; }
+.expanded-details .space-y-4 > div:nth-child(7) { transition-delay: 0.7s; }
+
+.expanded-details .space-y-6 > div:nth-child(1) { transition-delay: 0.1s; }
+.expanded-details .space-y-6 > div:nth-child(2) { transition-delay: 0.2s; }
+.expanded-details .space-y-6 > div:nth-child(3) { transition-delay: 0.3s; }
+.expanded-details .space-y-6 > div:nth-child(4) { transition-delay: 0.4s; }
+.expanded-details .space-y-6 > div:nth-child(5) { transition-delay: 0.5s; }
+.expanded-details .space-y-6 > div:nth-child(6) { transition-delay: 0.6s; }
+.expanded-details .space-y-6 > div:nth-child(7) { transition-delay: 0.7s; } 

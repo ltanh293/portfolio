@@ -200,9 +200,9 @@ function renderWorkCard(work) {
         </div>
       </div>
       
-      <!-- Expanded Details - Show on hover with expandable height -->
-      <div class="relative bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 p-4 md:p-6 expanded-details rounded-lg border border-blue-200 shadow-sm">
-        <div class="space-y-4 md:space-y-6">
+      <!-- Hover to Show Details -->
+      <div class="relative bg-gradient-to-br from-blue-50 to-indigo-50 expanded-details rounded-lg border border-blue-200 shadow-sm">
+        <div class="space-y-4 md:space-y-6 p-4 md:p-6">
           <!-- Header Section -->
           <div class="text-center border-b border-blue-200 pb-3 md:pb-4">
             <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">${work.company}</h3>
@@ -272,6 +272,30 @@ function renderWorkCard(work) {
       </div>
     </div>
   `;
+}
+
+// Toggle work card expanded state
+function toggleWorkCard(cardElement, workId) {
+  const expandedDetails = cardElement.querySelector('.expanded-details');
+  const isExpanded = cardElement.classList.contains('expanded');
+  
+  if (isExpanded) {
+    // Collapse
+    cardElement.classList.remove('expanded');
+    expandedDetails.style.maxHeight = '0';
+    expandedDetails.style.opacity = '0';
+    expandedDetails.style.marginTop = '0';
+    expandedDetails.style.paddingTop = '0';
+    expandedDetails.style.paddingBottom = '0';
+  } else {
+    // Expand
+    cardElement.classList.add('expanded');
+    expandedDetails.style.maxHeight = expandedDetails.scrollHeight + 'px';
+    expandedDetails.style.opacity = '1';
+    expandedDetails.style.marginTop = '1rem';
+    expandedDetails.style.paddingTop = '1.5rem';
+    expandedDetails.style.paddingBottom = '1.5rem';
+  }
 }
 
 // Render pagination
@@ -381,6 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
   renderPagination();
   setupScrollAnimations();
   setupSmoothScroll();
+  setupMobileMenu();
 });
 
 // Export functions to global scope for HTML onclick handlers
@@ -437,4 +462,50 @@ function setupSmoothScroll() {
       }
     });
   });
+}
+
+// Mobile Menu Setup
+function setupMobileMenu() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+      
+      // Change hamburger icon to X when menu is open
+      const icon = mobileMenuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('flex')) {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+      } else {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+      }
+    });
+    
+    // Close menu when clicking on a link
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        
+        // Reset hamburger icon
+        const icon = mobileMenuButton.querySelector('svg');
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        
+        // Reset hamburger icon
+        const icon = mobileMenuButton.querySelector('svg');
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+      }
+    });
+  }
 } 

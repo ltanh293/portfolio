@@ -16,27 +16,47 @@
   <!-- Header -->
   <header class="fixed top-0 left-0 w-full z-[99999] bg-white/95 backdrop-blur shadow">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between px-4 lg:px-8 py-4">
-      <div class="flex items-center space-x-2 mb-4 md:mb-0">
-        <span class="font-bold text-lg">Le Tuan Anh.</span>
+      <!-- Logo and Mobile Menu Button -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <div class="flex items-center space-x-2">
+          <span class="font-bold text-lg">Le Tuan Anh.</span>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
-      <nav class="flex-1 flex justify-center">
-        <ul class="flex bg-white/90 shadow-lg rounded-full px-4 md:px-6 py-2 space-x-2 md:space-x-6 text-sm md:text-base">
+      
+      <!-- Navigation Menu -->
+      <nav id="mobile-menu" class="hidden md:flex flex-1 justify-center mt-4 md:mt-0">
+        <ul class="flex flex-col md:flex-row bg-white/90 shadow-lg rounded-lg md:rounded-full px-4 md:px-6 py-2 space-y-2 md:space-y-0 md:space-x-2 lg:space-x-6 text-sm md:text-base w-full md:w-auto">
           <li><a href="#"
-              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition">Home</a></li>
+              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition block text-center md:text-left">Home</a></li>
           <li><a href="#portfolio"
-              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition">Portfolio</a>
+              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition block text-center md:text-left">Portfolio</a>
           </li>
           <li><a href="#about"
-              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition">About Me</a>
+              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition block text-center md:text-left">About Me</a>
           </li>
           <li><a href="#contact"
-              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition">Contact</a>
+              class="px-3 md:px-4 py-2 font-semibold text-gray-700 hover:text-blue-600 hover:underline transition block text-center md:text-left">Contact</a>
           </li>
         </ul>
       </nav>
-      <div class="flex justify-end mt-4 md:mt-0">
+      
+      <!-- CTA Button -->
+      <div class="hidden md:flex justify-end mt-4 md:mt-0">
         <a href="#contact"
           class="inline-block bg-blue-600 text-white px-4 md:px-6 py-2 rounded-full font-semibold shadow hover:bg-blue-700 transition text-sm md:text-base">Get
+          in Touch</a>
+      </div>
+      
+      <!-- Mobile CTA Button -->
+      <div class="md:hidden mt-4 text-center">
+        <a href="#contact"
+          class="inline-block bg-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-blue-700 transition text-sm w-full">Get
           in Touch</a>
       </div>
     </div>
@@ -132,20 +152,10 @@
         <div class="md:col-span-2 space-y-4">
           <div class="bg-white rounded-xl shadow p-4 md:p-5 flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <div class="font-semibold text-base md:text-lg">International University</div>
-              <div class="text-gray-500 text-sm mb-2">Design</div>
-              <div class="text-gray-400 text-xs mb-2">Oct 2020</div>
-              <div class="text-gray-600 text-sm">Completed a UX Certificate in Graphic Design and applied skills at
-                Internationally recognized level.</div>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow p-4 md:p-5 flex flex-col md:flex-row md:items-center md:justify-between">
-            <div>
-              <div class="font-semibold text-base md:text-lg">Google Design</div>
-              <div class="text-gray-500 text-sm mb-2">UX Design</div>
-              <div class="text-gray-400 text-xs mb-2">Oct 2020</div>
-              <div class="text-gray-600 text-sm">Completed the UX Certificate in Graphic Design and applied what is
-                learned at international level.</div>
+              <div class="font-semibold text-base md:text-lg">Foreign Trade University</div>
+              <div class="text-gray-500 text-sm mb-2">Bachelor's Degree (Excellent)</div>
+              <div class="text-gray-400 text-xs mb-2">Oct 2016</div>
+              <div class="text-gray-600 text-sm">International Finance</div>
             </div>
           </div>
         </div>
