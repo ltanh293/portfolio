@@ -89,14 +89,32 @@ html {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Scroll Animation Classes */
+/* Scroll Animation Classes - Fixed to not hide sections by default */
 .scroll-animate {
+  opacity: 1; /* Keep sections visible by default */
+  transform: translateY(0); /* Keep sections in place by default */
+  transition: all 0.6s ease-out;
+}
+
+.scroll-animate.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Only hide elements that should animate in */
+.work-card,
+.skill-tag,
+.animate-on-scroll,
+.animate-stagger {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
 }
 
-.scroll-animate.animate {
+.work-card.animate-in,
+.skill-tag.animate-in,
+.animate-on-scroll.animate-in,
+.animate-stagger.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -319,10 +337,10 @@ a:focus {
   }
 }
 
-/* Work card specific animations */
+/* Work card specific animations - Fixed to be visible when rendered */
 .work-card {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1; /* Keep work cards visible by default */
+  transform: translateY(0); /* Keep work cards in place by default */
   transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
   position: relative;
 }
@@ -694,7 +712,16 @@ footer .max-w-6xl {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  background: linear-gradient(135deg, 
+    #f0fdf4 0%, 
+    #dcfce7 15%, 
+    #bbf7d0 30%, 
+    #86efac 50%, 
+    #4ade80 70%, 
+    #22c55e 85%, 
+    #16a34a 100%);
+  background-size: 150% 150%;
+  animation: ultraSmoothShift 30s ease-in-out infinite;
   z-index: -1;
   overflow: hidden;
 }
@@ -733,18 +760,53 @@ footer .max-w-6xl {
   }
 }
 
+@keyframes ultraSmoothShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  33% {
+    background-position: 100% 50%;
+  }
+  66% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ensure main content is above background */
 body > *:not(.animated-green-bg) {
   position: relative;
   z-index: 2;
 }
 
-/* Glassmorphism effect for sections */
+/* Ensure main container is visible */
+main {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+
+/* Ensure sections are visible */
+section {
+  position: relative;
+  z-index: 5;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Glassmorphism effect for sections - Fixed to be visible and beautiful */
 .glass-section {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

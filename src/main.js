@@ -1,28 +1,15 @@
 import './style.css'
 
-// Import images for Vite to handle during build
-import avatarImg from '../images/avata/avatar.jpg'
-import nestleLogo from '../images/nestle/nestle-logo.svg'
-import nestleBg from '../images/nestle/milo_a2.png'
-import vinamilkLogo from '../images/vinamilk/vinamilk-logo.svg'
-import vinamilkBg from '../images/vinamilk/maxresdefault.jpg'
-import fonterraLogo from '../images/fonterra/fonterra-logo.svg'
-import fonterraBg from '../images/fonterra/anlene2.jpeg'
-import fonterraBg2 from '../images/fonterra/anlene.jpeg'
-import masanLogo from '../images/masan/Masan_consumer.svg'
-import masanBg1 from '../images/masan/joins.webp'
-import masanBg2 from '../images/masan/chinsu-1.jpeg'
-
-// HTML content has been moved to index.html for better organization
-// This file now only handles CSS imports and any future JavaScript functionality 
+// Add console log to verify script is loading
+console.log('main.js loaded successfully');
 
 // Work History Data
 const workData = [
   {
     id: 'nestle-1',
     company: 'NESTLÉ VIETNAM LTD',
-    logo: nestleLogo,
-    background: nestleBg,
+    logo: 'images/nestle/nestle-logo.svg',
+    background: 'images/nestle/milo_a2.png',
     tags: ['#FMCG', '#InnovationPipeline', '#CapabilityBuilding'],
     position: 'Innovation & Renovation (I&R) Lead',
     department: 'Innovation & Renovation',
@@ -47,8 +34,8 @@ const workData = [
   {
     id: 'vinamilk',
     company: 'VIETNAM DAIRY PRODUCTS JOINT STOCK COMPANY',
-    logo: vinamilkLogo,
-    background: vinamilkBg,
+    logo: 'images/vinamilk/vinamilk-logo.svg',
+    background: 'images/vinamilk/maxresdefault.jpg',
     tags: ['#FMCG', '#Dairy', '#DrinkingYogurt', '#JuicyMilk', '#Kids'],
     position: 'Brand Manager - SuSu Hero',
     department: 'Marketing',
@@ -73,8 +60,8 @@ const workData = [
   {
     id: 'fonterra',
     company: 'FONTERRA BRANDS (VIETNAM)',
-    logo: fonterraLogo,
-    background: fonterraBg,
+    logo: 'images/fonterra/fonterra-logo.svg',
+    background: 'images/fonterra/anlene2.jpeg',
     tags: ['#FMCG', '#Dairy', '#AdultMilkPowder', '#Innovation'],
     position: 'Brand Manager',
     department: 'Anlene (core Consumer Business)',
@@ -99,8 +86,8 @@ const workData = [
   {
     id: 'masan-1',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: masanLogo,
-    background: masanBg1,
+    logo: 'images/masan/Masan_consumer.svg',
+    background: 'images/masan/joins.webp',
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Brand Manager',
     department: 'Joins detergent',
@@ -125,8 +112,8 @@ const workData = [
   {
     id: 'masan-2',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: masanLogo,
-    background: masanBg2,
+    logo: 'images/masan/Masan_consumer.svg',
+    background: 'images/masan/chinsu-1.jpeg',
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Senior Assistant Brand Manager',
     department: 'Consumer Business',
@@ -151,8 +138,8 @@ const workData = [
   {
     id: 'masan-3',
     company: 'MASAN CONSUMER HOLDINGS',
-    logo: masanLogo,
-    background: masanBg2,
+    logo: 'images/masan/Masan_consumer.svg',
+    background: 'images/masan/chinsu-1.jpeg',
     tags: ['#FMCG', '#Seasoning', '#Homecare', '#Innovation'],
     position: 'Masan Young Entrepreneur',
     department: 'Leadership Program',
@@ -388,14 +375,23 @@ function renderWorkCards() {
 }
 
 function actuallyRenderWorkCards() {
+  console.log('actuallyRenderWorkCards called');
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentPageData = workData.slice(start, end);
+  console.log('Current page data:', currentPageData);
+  
   const cardsHTML = currentPageData.map(work => renderWorkCard(work)).join('');
-  document.getElementById('work-cards-container').innerHTML = cardsHTML;
+  console.log('Generated HTML length:', cardsHTML.length);
+  
+  const container = document.getElementById('work-cards-container');
+  container.innerHTML = cardsHTML;
+  console.log('HTML inserted into container');
+  
   // Add animation observer for newly rendered work cards
   setTimeout(() => {
     const workCards = document.querySelectorAll('.work-card');
+    console.log('Found work cards after rendering:', workCards.length);
     workCards.forEach((card, index) => {
       card.style.animationDelay = `${index * 0.2}s`;
       card.classList.add('animate-in');
@@ -414,11 +410,55 @@ function closeModal(id) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
-  renderWorkCards();
-  renderPagination();
+  console.log('DOM loaded, initializing...');
+  
+  // Make sure all sections are visible initially
+  const sections = document.querySelectorAll('section');
+  sections.forEach(section => {
+    section.style.opacity = '1';
+    section.style.transform = 'translateY(0)';
+    section.classList.remove('scroll-animate');
+    console.log('Section made visible:', section.className);
+  });
+  
+  // Initialize work cards
+  const workContainer = document.getElementById('work-cards-container');
+  console.log('Looking for work container:', workContainer);
+  
+  if (workContainer) {
+    console.log('Work container found, rendering cards...');
+    console.log('Work data length:', workData.length);
+    console.log('Current page:', currentPage);
+    console.log('Items per page:', itemsPerPage);
+    
+    renderWorkCards();
+    renderPagination();
+    
+    // Check if cards were rendered
+    setTimeout(() => {
+      const renderedCards = document.querySelectorAll('.work-card');
+      console.log('Rendered work cards:', renderedCards.length);
+      if (renderedCards.length === 0) {
+        console.error('No work cards were rendered!');
+        // Force render a simple card for testing
+        workContainer.innerHTML = `
+          <div class="bg-white rounded-xl shadow p-4 md:p-5 flex flex-col relative overflow-hidden group work-card">
+            <div class="font-semibold text-base md:text-lg mb-2">TEST CARD</div>
+            <div class="text-gray-600 text-sm">This is a test card to verify rendering works.</div>
+          </div>
+        `;
+      }
+    }, 500);
+  } else {
+    console.error('Work container not found!');
+  }
+  
+  // Setup other features
   setupScrollAnimations();
   setupSmoothScroll();
   setupMobileMenu();
+  
+  console.log('Initialization complete');
 });
 
 // Export functions to global scope for HTML onclick handlers
@@ -426,8 +466,10 @@ window.changePage = changePage;
 window.openModal = openModal;
 window.closeModal = closeModal;
 
-// Scroll Animation Setup
+// Scroll Animation Setup - Modified to not hide sections initially
 function setupScrollAnimations() {
+  console.log('Setting up scroll animations...');
+  
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -442,18 +484,12 @@ function setupScrollAnimations() {
     });
   }, observerOptions);
 
-  // Observe all sections that should animate
-  const sectionsToAnimate = document.querySelectorAll('section');
-  sectionsToAnimate.forEach(section => {
-    section.classList.add('scroll-animate');
-    observer.observe(section);
-  });
-
-  // Observe specific elements for staggered animations
-  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+  // Only observe elements that should animate, not all sections
+  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll, .work-card, .skill-tag');
   elementsToAnimate.forEach(element => {
     element.classList.add('scroll-animate');
     observer.observe(element);
+    console.log('Observing element for animation:', element.className);
   });
 }
 
