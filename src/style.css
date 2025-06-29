@@ -308,8 +308,8 @@ a:focus {
 /* Work card specific animations */
 .work-card {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(24px);
+  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
   position: relative;
 }
 
@@ -568,13 +568,50 @@ a:focus {
 /* Skill tags hover effect */
 .skill-tag {
   transition: all 0.3s ease;
+  cursor: default;
+  display: inline-block;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  position: relative;
 }
 
 .skill-tag:hover {
-  transform: translateY(-2px) scale(1.05);
-  background-color: #10b981 !important;
-  color: white !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transform: translateX(8px);
+  color: #1e40af !important;
+  background-color: #eff6ff !important;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+}
+
+/* Enhanced skill section styling */
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #1e40af);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.skill-tag:hover::before {
+  width: 100%;
+}
+
+/* Skill section card enhancement */
+.bg-white.rounded-xl.shadow.p-6 {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.bg-white.rounded-xl.shadow.p-6:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
 }
 
 /* Tool icons hover effect enhancement */
@@ -609,18 +646,31 @@ html, body {
   height: 100%;
 }
 
+/* Footer styles - đồng bộ với nav */
 footer {
-  margin-top: auto;
-  background: #fff;
+  width: 100vw;
+  background: rgba(255,255,255,0.95);
   box-shadow: 0 -2px 16px 0 rgba(0,0,0,0.04);
   border-top: 1px solid #e5e7eb;
   z-index: 10;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+footer .max-w-6xl {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
 }
 
-/* Footer content center and padding */
-footer .max-w-4xl {
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
+/* Responsive for footer */
+@media (max-width: 768px) {
+  footer .max-w-6xl {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 /* Animated green gradient background with blur and random movement */
@@ -683,21 +733,28 @@ body > *:not(.animated-green-bg) {
 /* Glassmorphism effect for sections */
 .glass-section {
   background: rgba(255,255,255,0.55);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255,255,255,0.18);
-  margin-bottom: 2.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 
 @media (max-width: 768px) {
   .glass-section {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    border-radius: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .glass-section {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -724,4 +781,297 @@ header.glass-section {
 body > header {
   position: fixed !important;
   z-index: 99999 !important;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+  header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  header nav ul li {
+    margin: 0.25rem;
+  }
+  
+  header .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Responsive hero section */
+@media (max-width: 768px) {
+  .hero-content {
+    transform: scale(0.9);
+  }
+  
+  .text-reveal {
+    padding: 0 1rem;
+  }
+  
+  .text-reveal h1 {
+    line-height: 1.2;
+  }
+  
+  .text-reveal p {
+    line-height: 1.5;
+  }
+}
+
+/* Responsive work cards */
+@media (max-width: 768px) {
+  .work-card {
+    margin-bottom: 1rem;
+  }
+  
+  .work-card .work-content {
+    line-height: 1.4;
+  }
+  
+  .expanded-details {
+    margin-top: 0.5rem !important;
+    padding: 1rem !important;
+  }
+  
+  .expanded-details .space-y-4 > div {
+    margin-bottom: 0.75rem;
+  }
+  
+  .expanded-details .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .expanded-details {
+    margin-top: 1.5rem !important;
+    padding: 2rem !important;
+  }
+}
+
+/* Responsive skill section */
+@media (max-width: 768px) {
+  .skill-tag {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  
+  .bg-white.rounded-xl.shadow.p-4 {
+    padding: 1rem;
+  }
+  
+  .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skill-tag {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Responsive pagination */
+@media (max-width: 768px) {
+  #pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  #pagination button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Responsive modals */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem 0;
+  }
+  
+  footer .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  footer .flex.space-x-4 {
+    gap: 1rem;
+  }
+}
+
+/* Enhanced responsive typography */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  p {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Responsive container */
+@media (max-width: 640px) {
+  .max-w-7xl {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-7xl {
+    max-width: 80rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Expanded details for work cards with expandable height */
+.expanded-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateY(-20px);
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  visibility: hidden;
+}
+
+.work-card:hover .expanded-details {
+  max-height: 2000px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  visibility: visible;
+}
+
+/* Enhanced work card styling */
+.work-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid transparent;
+}
+
+.work-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-color: #e5e7eb;
+}
+
+.work-card:hover .work-logo {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.work-card:hover .work-company {
+  color: #059669;
+}
+
+/* Smooth transition for all work card elements */
+.work-card * {
+  transition: all 0.3s ease;
+}
+
+/* Enhanced spacing and typography */
+.work-card .work-content {
+  line-height: 1.6;
+}
+
+.work-card .work-company {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.work-card .work-position {
+  font-weight: 500;
+}
+
+.work-card .work-description {
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+/* Enhanced button styling */
+.work-card button {
+  transition: all 0.3s ease;
+}
+
+.work-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 } 
