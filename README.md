@@ -47,11 +47,22 @@ npm run dev
 
 ## Deployment to GitHub Pages
 
-### Method 1: Automatic Deployment (Recommended)
+### Method 1: GitHub Actions (Recommended)
 
-1. Push your code to the `main` branch
-2. GitHub Actions will automatically build and deploy to GitHub Pages
-3. Your site will be available at `https://yourusername.github.io/portfolio/`
+1. **Enable GitHub Pages:**
+   - Go to your repository settings on GitHub
+   - Navigate to "Pages" in the sidebar
+   - Under "Source", select "GitHub Actions"
+
+2. **Push your code:**
+   ```bash
+   git add .
+   git commit -m "Setup GitHub Pages deployment"
+   git push origin main
+   ```
+
+3. **The site will be automatically deployed** and available at:
+   `https://yourusername.github.io/portfolio/`
 
 ### Method 2: Manual Deployment
 
@@ -65,12 +76,18 @@ npm run build
 npm run deploy
 ```
 
-### GitHub Pages Setup
+### Troubleshooting
 
-1. Go to your repository settings on GitHub
-2. Navigate to "Pages" in the sidebar
-3. Under "Source", select "GitHub Actions"
-4. The site will be automatically deployed when you push to the main branch
+If you encounter permission errors:
+
+1. **Check repository settings:**
+   - Ensure the repository is public
+   - Go to Settings > Actions > General
+   - Enable "Read and write permissions" under "Workflow permissions"
+
+2. **Alternative workflow:**
+   - If the main workflow fails, the system will automatically try the simple workflow
+   - Both workflows are included in the repository
 
 ## Project Structure
 
@@ -85,6 +102,7 @@ portfolio/
 ├── src/             # Source files
 │   ├── main.js      # Main JavaScript file
 │   └── style.css    # Custom styles
+├── .github/         # GitHub Actions workflows
 ├── index.html       # Main HTML file
 ├── package.json     # Dependencies and scripts
 ├── vite.config.js   # Vite configuration
