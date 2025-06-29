@@ -1,113 +1,142 @@
 # Portfolio Website
 
-A modern, responsive portfolio website built with Vite, Tailwind CSS, and vanilla JavaScript.
+A modern, responsive portfolio website built with HTML, Tailwind CSS, and JavaScript using Vite.
 
-## 🚀 Features
+## Features
 
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Dynamic Content**: JavaScript-powered work history with pagination
-- **Interactive Modals**: Detailed information popups for work experiences
-- **Smooth Animations**: CSS transitions and hover effects
-- **Modern UI**: Clean, professional design with gradient overlays
-- **Accessibility**: Focus states and semantic HTML
+- 🎨 Modern glassmorphism design with green gradient theme
+- 📱 Fully responsive design for all devices
+- ✨ Smooth scroll animations and hover effects
+- 🎯 Interactive work history cards with detailed information
+- 🚀 Optimized for performance and SEO
 
-## 📁 Project Structure
+## Technologies Used
+
+- HTML5
+- Tailwind CSS
+- JavaScript (ES6+)
+- Vite (Build tool)
+- GitHub Pages (Hosting)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Deployment to GitHub Pages
+
+### Method 1: Automatic Deployment (Recommended)
+
+1. Push your code to the `main` branch
+2. GitHub Actions will automatically build and deploy to GitHub Pages
+3. Your site will be available at `https://yourusername.github.io/portfolio/`
+
+### Method 2: Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
+
+### GitHub Pages Setup
+
+1. Go to your repository settings on GitHub
+2. Navigate to "Pages" in the sidebar
+3. Under "Source", select "GitHub Actions"
+4. The site will be automatically deployed when you push to the main branch
+
+## Project Structure
 
 ```
 portfolio/
-├── images/                 # Image assets
-│   ├── fonterra/          # Fonterra company images
-│   ├── masan/             # Masan company images
-│   └── vinamilk/          # Vinamilk company images
-├── src/
-│   ├── main.js            # JavaScript logic and data
-│   └── style.css          # Custom CSS styles
-├── index.html             # Main HTML file
-├── package.json           # Project dependencies
-├── vite.config.js         # Vite configuration
-└── README.md              # Project documentation
+├── images/           # Image assets
+│   ├── avata/       # Avatar images
+│   ├── fonterra/    # Company logos
+│   ├── masan/       # Company logos
+│   ├── nestle/      # Company logos
+│   └── vinamilk/    # Company logos
+├── src/             # Source files
+│   ├── main.js      # Main JavaScript file
+│   └── style.css    # Custom styles
+├── index.html       # Main HTML file
+├── package.json     # Dependencies and scripts
+├── vite.config.js   # Vite configuration
+└── README.md        # This file
 ```
 
-## 🛠️ Code Architecture
+## Customization
 
-### JavaScript (`src/main.js`)
-- **Data Management**: Centralized work history data
-- **Template Rendering**: Dynamic card generation
-- **Pagination Logic**: Page navigation and state management
-- **Modal Management**: Popup functionality
-- **Event Handling**: User interactions
+### Changing Colors and Theme
 
-### CSS (`src/style.css`)
-- **Custom Animations**: Fade-in effects and transitions
-- **Component Styles**: Reusable button and card styles
-- **Responsive Utilities**: Mobile-first responsive design
-- **Accessibility**: Focus states and keyboard navigation
-- **Print Styles**: Optimized for printing
+Edit the CSS variables in `src/style.css` to customize the color scheme:
 
-### HTML (`index.html`)
-- **Semantic Structure**: Clean, accessible markup
-- **Component Templates**: Placeholder containers for dynamic content
-- **Modal Structure**: Popup dialogs for detailed information
-
-## 🎯 Key Improvements After Refactoring
-
-1. **Separation of Concerns**: HTML, CSS, and JavaScript are now properly separated
-2. **DRY Principle**: Eliminated code duplication with template functions
-3. **Maintainability**: Centralized data management makes updates easier
-4. **Scalability**: Easy to add new work experiences or modify existing ones
-5. **Performance**: Optimized rendering with efficient DOM manipulation
-6. **Accessibility**: Improved focus management and semantic structure
-
-## 🚀 Getting Started
-
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Start Development Server**:
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for Production**:
-   ```bash
-   npm run build
-   ```
-
-## 📝 Adding New Work Experience
-
-To add a new work experience, simply update the `workData` array in `src/main.js`:
-
-```javascript
-{
-  id: 'unique-id',
-  company: 'COMPANY NAME',
-  logo: './path/to/logo.svg',
-  background: './path/to/background.jpg',
-  tags: ['#Tag1', '#Tag2'],
-  position: 'Job Title',
-  department: 'Department',
-  period: 'MM/YYYY to MM/YYYY',
-  description: 'Job description',
-  modalId: 'modal-unique-id'
+```css
+:root {
+  --primary-color: #your-color;
+  --secondary-color: #your-color;
 }
 ```
 
-## 🎨 Customization
+### Adding New Sections
 
-- **Colors**: Modify Tailwind classes or add custom colors in `tailwind.config.js`
-- **Animations**: Update CSS animations in `src/style.css`
-- **Layout**: Adjust grid and spacing in HTML classes
-- **Content**: Update text content in HTML or JavaScript data
+1. Add HTML structure in `index.html`
+2. Add corresponding styles in `src/style.css`
+3. Add JavaScript functionality in `src/main.js`
 
-## 📱 Browser Support
+### Updating Content
+
+- **Personal Information**: Update the content in `index.html`
+- **Work History**: Modify the `workData` array in `src/main.js`
+- **Images**: Replace images in the `images/` directory
+
+## Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## 📄 License
+## Contributing
 
-This project is open source and available under the [MIT License](LICENSE).
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Le Tuan Anh - [LinkedIn](https://www.linkedin.com/in/tuan-anh-le-62a429202/)
+
+Project Link: [https://github.com/yourusername/portfolio](https://github.com/yourusername/portfolio)
